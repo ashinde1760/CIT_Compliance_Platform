@@ -5,5 +5,7 @@ export interface Client{
     groupCompany?:string;
     PrecisionId?:string;
     approver?:string;
+    status?:boolean;
+    
   }
   

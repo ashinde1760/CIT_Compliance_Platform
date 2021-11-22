@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/Modal/client';
 import { ClientServiceService } from 'src/app/Services/client-service.service';
+import { SelectItem, PrimeNGConfig} from 'primeng/api';
 
 @Component({
   selector: 'app-client-master',
@@ -9,14 +10,18 @@ import { ClientServiceService } from 'src/app/Services/client-service.service';
 })
 export class ClientMasterComponent implements OnInit {
 
-   //for activation part
-   checked1: boolean = false;
-   checked2: boolean = true;
+   
+  //  checked2: boolean = true;
  
    //variable for fetching data
    client1:Client[] = [];
  
    client!: Client;
+
+   //for activation part
+   checked1: boolean=true;
+
+   
  
    submitted?:boolean;
    clientDialogue?:boolean;
@@ -24,7 +29,7 @@ export class ClientMasterComponent implements OnInit {
  
    selectedClients!:boolean;
  
-   constructor(private cls:ClientServiceService) {}
+   constructor(private cls:ClientServiceService, private primengConfig : PrimeNGConfig) {}
  
    
  
@@ -34,7 +39,10 @@ export class ClientMasterComponent implements OnInit {
  
      this.cls.getClientData().subscribe((result:any)=>{
        this.client1 = result;
+       
      })
+
+     this.primengConfig.ripple = true;
    }
  
   
@@ -62,6 +70,7 @@ export class ClientMasterComponent implements OnInit {
      else 
      {
          this.client.id = this.createId();
+         this.client.status = this.checked1;
          this.client1.push(this.client);
          this.cls.postClient(this.client).subscribe((result)=>{
          window.location.reload();
@@ -97,12 +106,29 @@ export class ClientMasterComponent implements OnInit {
    }
  
    //Edit client information
-     editClient(client:Client){
-     this.client={...client};
-     // this.submitted=false;
-     this.clientDialogue=true;
-     console.log(client);
-     
-   }
+
+     editClient(client:Client)
+     {
+      this.client={...client};
+      // this.submitted=false;
+      this.clientDialogue=true;
+      console.log(client);
+     }
+
+   //method for changing the status of client
+   changeStatus(client:Client)
+   {
+
+    this.client={...client};
+
+      if(this.client.id)
+      {        
+        this.cls.activation(this.client.id,this.client).subscribe((result)=>{
+        console.log("status"+result);
+          }) 
+      }
+  }
+
+
 
 }

@@ -63,7 +63,7 @@
   
   <!-- Table to show client data -->
   
-  <p-table #dt [value]="client1" [rows]="3" [paginator]="true"
+  <p-table #dt [value]="client1" [rows]="10" [paginator]="true"
     [globalFilterFields]="['companyName','PAN','groupCompany','approver']" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
@@ -96,9 +96,8 @@
         <th pSortableColumn="approver">Approver <p-sortIcon field="approver"></p-sortIcon>
         </th>
         <th></th>
-        <th></th>
-        <th pSortableColumn="status">Status 
-        </th>
+        <th>Edit</th>
+        <th pSortableColumn="status">Status(Active/Deactive)</th>
   
         <th></th>
       </tr>
@@ -126,7 +125,8 @@
         <td>
   
          
-          <p-toggleButton [(ngModel)]="checked2" onLabel="Active" offLabel="Deactive" Icon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}"></p-toggleButton>
+          
+          <p-toggleButton [(ngModel)]="client1.status" onIcon="pi pi-check" offIcon="pi pi-times" (click)="changeStatus(client1)"  [style]="{'width': '5em'}"></p-toggleButton>
         </td>
       </tr>
     </ng-template>
