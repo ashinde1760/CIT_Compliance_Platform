@@ -106,7 +106,7 @@
         <td>
   
          
-          <p-toggleButton [(ngModel)]="checked2" onLabel="Active" offLabel="Deactive" Icon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}"></p-toggleButton>
+          <p-toggleButton [(ngModel)]="user1.status" onLabel="Active" offLabel="Deactive" Icon="pi pi-check" offIcon="pi pi-times" (click)="changeStatus(user1)" [style]="{'width': '10em'}"></p-toggleButton>
         </td>
       </tr>
     </ng-template>

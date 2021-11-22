@@ -16,7 +16,7 @@ interface Role {
 export class UserComponent implements OnInit {
 
  //for activation part
- checked1: boolean = false;
+//  checked1: boolean = false;
  checked2: boolean = true;
 
  //variable for fetching data
@@ -87,6 +87,7 @@ export class UserComponent implements OnInit {
    {
       this.user.role=this.selectedRole;
        this.user.id = this.createId();
+       this.user.status=true;
        this.user1.push(this.user);
        this.obj.postUser(this.user).subscribe((result)=>{
        window.location.reload();
@@ -131,6 +132,20 @@ export class UserComponent implements OnInit {
    console.log(user);
    
  }
+
+ //method for changing the status of user
+ changeStatus(user:User)
+ {
+
+  this.user={...user};
+
+    if(this.user.id)
+    {        
+      this.obj.activation(this.user.id,this.user).subscribe((result)=>{
+      console.log("status"+result);
+        }) 
+    }
+}
 
 
 }

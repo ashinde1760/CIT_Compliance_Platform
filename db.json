@@ -39,20 +39,31 @@
   ],
   "user": [
     {
-      "name": "Shivraj Godle",
-      "email": "shivraj@pwc.com",
+      "name": "amrut",
+      "email": "amrut@pwc.com",
       "role": {
         "role": "Project Team Member"
       },
-      "id": "E7wNH"
+      "id": "cK2Sc",
+      "status": false
     },
     {
       "name": "Akshay",
-      "email": "ashinde@pwc.com",
+      "email": "akshay@pwc.com",
       "role": {
-        "role": "IT Admin"
+        "role": "Project Manager"
       },
-      "id": "GrwCQ"
+      "id": "K0Wb8",
+      "status": true
+    },
+    {
+      "name": "Shivraj",
+      "email": "shivraj@pwc.com",
+      "role": {
+        "role": "Quality Manager"
+      },
+      "id": "1QkrO",
+      "status": true
     }
   ],
   "comments": [
