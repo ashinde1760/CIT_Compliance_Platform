@@ -15,10 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import {TableModule} from 'primeng/table';
 import {ToggleButtonModule} from 'primeng/togglebutton';
+import { UserComponent } from './user/user.component';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
-    ClientMasterComponent
+    ClientMasterComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     FlexLayoutModule,
     TableModule,
     ReactiveFormsModule,
-    ToggleButtonModule    
+    ToggleButtonModule,
+    DropdownModule    
   ]
 })
 export class AdministratorModule { }
