@@ -24,8 +24,8 @@ export class ClientServiceService {
   {
     return this.http.put(`${this.url}/${id}`,data);
   }
-  activation(id: any,data: any)
-  {
-    return this.http.put(`${this.url}/${id}`,data);
-  }
+  // activation(id: any,data: any)
+  // {
+  //   return this.http.put(`${this.url}/${id}`,data);
+  // }
 }

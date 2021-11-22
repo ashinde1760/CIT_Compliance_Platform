@@ -32,7 +32,7 @@
       <input type="text" pInputText id="approver"   pattern="^[A-Za-z0-9._%+-]+@pwc.com$" [(ngModel)]="user.email" required autofocus />
       <small class="p-invalid" *ngIf="submitted && !user.email">Email-ID is required</small>
   </div>
-    <div class="p-field">
+    <div class="p-field" style="margin-bottom: 50px;">
     <p-dropdown [options]=roles [(ngModel)]="selectedRole" optionLabel="role" placeholder="select role"></p-dropdown>
     </div>
    
@@ -51,7 +51,7 @@
   <!-- Table to show client data -->
   
   <p-table #dt [value]="user1" [rows]="5" [paginator]="true"
-    [globalFilterFields]="['Name','Email-ID','Role']" [rowHover]="true" dataKey="id"
+    [globalFilterFields]="['id','name','email','role']" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
@@ -74,9 +74,9 @@
   
         <th pSortableColumn="name"> Name <p-sortIcon field="name"></p-sortIcon>
         </th>
-        <th pSortableColumn="Email-ID">Email-ID <p-sortIcon field="email"></p-sortIcon>
+        <th pSortableColumn="email">Email-ID <p-sortIcon field="email"></p-sortIcon>
         </th>
-        <th pSortableColumn="Email-ID">Role <p-sortIcon field="email"></p-sortIcon>
+        <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon>
         </th>
         <th></th>
         <th pSortableColumn="status">Status 

@@ -42,7 +42,7 @@
       "name": "amrut",
       "email": "amrut@pwc.com",
       "role": {
-        "role": "Project Team Member"
+        "role": "Quality Manager"
       },
       "id": "cK2Sc",
       "status": false
@@ -64,6 +64,15 @@
       },
       "id": "1QkrO",
       "status": true
+    },
+    {
+      "name": "Diksha",
+      "email": "diksha@pwc.com",
+      "role": {
+        "role": "Project Team Member"
+      },
+      "id": "ubGrT",
+      "status": false
     }
   ],
   "comments": [

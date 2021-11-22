@@ -141,7 +141,7 @@ export class UserComponent implements OnInit {
 
     if(this.user.id)
     {        
-      this.obj.activation(this.user.id,this.user).subscribe((result)=>{
+      this.obj.updateUser(this.user.id,this.user).subscribe((result)=>{
       console.log("status"+result);
         }) 
     }

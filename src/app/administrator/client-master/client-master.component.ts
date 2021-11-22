@@ -123,7 +123,7 @@ export class ClientMasterComponent implements OnInit {
 
       if(this.client.id)
       {        
-        this.cls.activation(this.client.id,this.client).subscribe((result)=>{
+        this.cls.updateClient(this.client.id,this.client).subscribe((result)=>{
         console.log("status"+result);
           }) 
       }
