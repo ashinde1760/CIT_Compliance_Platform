@@ -78,11 +78,10 @@
         </th>
         <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon>
         </th>
-        <th></th>
+        <th>Action</th>
+        
         <th pSortableColumn="status">Status 
         </th>
-  
-        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user1>
@@ -94,12 +93,6 @@
         <td>{{user1.name}}</td>
         <td>{{user1.email}}</td>
         <td>{{user1.role.role}}</td>
-        <!-- <td>
-          <p-tableCheckbox [value]="true"></p-tableCheckbox>
-        </td> -->
-        <td>
-          <!-- <span>[class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
-        </td>
         <td>
           <p-button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user1)"></p-button>
         </td>
