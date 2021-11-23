@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/Modal/client';
 import { ClientServiceService } from 'src/app/Services/client-service.service';
-import { SelectItem, PrimeNGConfig} from 'primeng/api';
+import { SelectItem, PrimeNGConfig, MessageService} from 'primeng/api';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-master',
   templateUrl: './client-master.component.html',
-  styleUrls: ['./client-master.component.css']
+  styleUrls: ['./client-master.component.css'],
+  providers: [MessageService]
 })
 export class ClientMasterComponent implements OnInit {
 
@@ -29,7 +31,7 @@ export class ClientMasterComponent implements OnInit {
  
    selectedClients!:boolean;
  
-   constructor(private cls:ClientServiceService, private primengConfig : PrimeNGConfig) {}
+   constructor(private cls:ClientServiceService, private primengConfig : PrimeNGConfig,private messageService: MessageService) {}
  
    
  
@@ -45,6 +47,10 @@ export class ClientMasterComponent implements OnInit {
      this.primengConfig.ripple = true;
    }
  
+
+//    showSuccess() {
+//     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+// }
   
  //to open dialog box
    addClient(){
@@ -63,22 +69,52 @@ export class ClientMasterComponent implements OnInit {
      this.submitted=true;
      if(this.client.companyName?.trim()){
        if(this.client.id){
-         this.cls.updateClient(this.client.id,this.client).subscribe((result)=>{
-         window.location.reload();
-       })  
+
+    //swal fire code starts here
+
+    this.hideDialog();
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success')
+
+        //Logic for Update
+        this.cls.updateClient(this.client.id,this.client).subscribe((result)=>{
+          window.location.reload();
+        })          
+
+
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+
+    //swal fire code ends here
+
      }
      else 
      {
+      
+   
+        //code for Saving New Client
          this.client.id = this.createId();
          this.client.status = this.checked1;
          this.client1.push(this.client);
          this.cls.postClient(this.client).subscribe((result)=>{
-         window.location.reload();
+        //  window.location.reload();
+        this.messageService.add({severity:'success', summary:'Success', detail:'Client Created Successfully'});
          })
+      
      }
      
      this.clientDialogue = false;
-     this.client = {};
+    //  this.client = {};
    }   
  }
  

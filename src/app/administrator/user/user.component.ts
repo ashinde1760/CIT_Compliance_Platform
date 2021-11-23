@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Modal/user';
 import { UserServiceService } from 'src/app/Services/user-service.service';
+import Swal from 'sweetalert2';
+import {MessageService} from 'primeng/api';
 
 interface Role {
   role?: string
@@ -11,7 +13,9 @@ interface Role {
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers: [MessageService]
+  
 })
 export class UserComponent implements OnInit {
 
@@ -37,7 +41,7 @@ export class UserComponent implements OnInit {
 
 
 
- constructor(private obj:UserServiceService) {
+ constructor(private obj:UserServiceService,private messageService: MessageService) {
 
   this.roles=[
     {role:'Project Team Member'},
@@ -78,10 +82,36 @@ export class UserComponent implements OnInit {
    this.submitted=true;
    if(this.user.name?.trim()){
      if(this.user.id){
-      this.user.role=this.selectedRole;
-       this.obj.updateUser(this.user.id,this.user).subscribe((result)=>{
-       window.location.reload();
-     })  
+
+
+
+      //swal fire code starts here
+
+    this.hideDialog();
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success')
+
+        //Logic for Update
+        this.user.role=this.selectedRole;
+        this.obj.updateUser(this.user.id,this.user).subscribe((result)=>{
+        window.location.reload();
+      })          
+
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+
+    //swal fire code ends here
+
    }
    else 
    {
@@ -90,13 +120,15 @@ export class UserComponent implements OnInit {
        this.user.status=true;
        this.user1.push(this.user);
        this.obj.postUser(this.user).subscribe((result)=>{
-       window.location.reload();
+        this.messageService.add({severity:'success', summary:'Success', detail:'Client Created Successfully'});
+
+      //  window.location.reload();
        })
    }
    
    
    this.userDialogue = false;
-   this.user = {};
+  //  this.user = {};
 
  }   
 }

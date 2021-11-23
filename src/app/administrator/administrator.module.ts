@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared_module/shared.module';
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { ClientMasterComponent } from './client-master/client-master.component';
-
+import {ToastModule} from 'primeng/toast';
 import {SidebarModule} from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -28,6 +28,7 @@ import {DropdownModule} from 'primeng/dropdown';
     CommonModule,
     AdministratorRoutingModule,
     SidebarModule,
+    ToastModule,
     ButtonModule,
     SidebarModule,
     ButtonModule,

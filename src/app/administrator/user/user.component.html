@@ -16,7 +16,7 @@
     </p-toolbar>
   </div>
   
-  
+  <p-toast></p-toast>
   
   
   <!-- Dialog box to add Client -->
@@ -50,7 +50,7 @@
   
   <!-- Table to show client data -->
   
-  <p-table #dt [value]="user1" [rows]="5" [paginator]="true"
+  <p-table #dt [value]="user1" [rows]="10" [paginator]="true"
     [globalFilterFields]="['id','name','email','role']" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
