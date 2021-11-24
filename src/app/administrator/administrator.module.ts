@@ -17,12 +17,14 @@ import {TableModule} from 'primeng/table';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import { UserComponent } from './user/user.component';
 import {DropdownModule} from 'primeng/dropdown';
+import { DocumentManagerComponent } from './document-manager/document-manager.component';
 
 
 @NgModule({
   declarations: [
     ClientMasterComponent,
-    UserComponent
+    UserComponent,
+    DocumentManagerComponent
   ],
   imports: [
     CommonModule,
